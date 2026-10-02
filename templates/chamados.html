@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="titulo-pagina">
+  <h2>Chamados</h2>
+  <a class="botao" href="/chamados/novo">
+    + Novo chamado
+  </a>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Solicitante</th>
+      <th>Prioridade</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for chamado in chamados %}
+    <tr>
+      <td>
+        #{{ chamado.id }}
+      </td>
+      <td>
+        {{ chamado.titulo }}
+      </td>
+      <td>
+        {{ chamado.solicitante }}
+      </td>
+      <td>
+        {{ chamado.prioridade }}
+      </td>
+      <td>
+        {{ chamado.status }}
+      </td>
+      <td>
+        <a href="/chamados/{{ chamado.id }}">
+          Visualizar
+        </a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="6">
+        Nenhum chamado cadastrado.
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
