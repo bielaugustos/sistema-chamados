@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h2>Dashboard</h2>
+<div class="dashboard">
+  <div class="card">
+    <h3>Total</h3>
+    <strong>{{ total }}</strong>
+  </div>
+  <div class="card">
+    <h3>Abertos</h3>
+    <strong>{{ abertos }}</strong>
+  </div>
+  <div class="card">
+    <h3>Em atendimento</h3>
+    <strong>{{ atendimento }}</strong>
+  </div>
+  <div class="card">
+    <h3>Fechados</h3>
+    <strong>{{ fechados }}</strong>
+  </div>
+</div>
+{% endblock %}

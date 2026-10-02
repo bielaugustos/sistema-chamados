@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HelpDesk</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>HelpDesk</h1>
+      <nav>
+        <a href="/">Dashboard</a>
+        <a href="/chamados">Chamados</a>
+        <a href="/chamados/novo">Novo chamado</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {% block conteudo %}
+    {% endblock %}
+  </main>
+</body>
+
+</html>
