@@ -4,15 +4,11 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from chamado import (
-    Chamado,
-    Prioridade,
-    Status,
-    TransicaoInvalida,
-)
+from chamado import Chamado, Prioridade, Status
 
 
 class ChamadoNaoEncontrado(Exception):
@@ -100,10 +96,7 @@ class SistemaChamados:
 
     def mudar_status(self, id_chamado: int, status: Status) -> Chamado:
         chamado = self.obter(id_chamado)
-        try:
-            chamado.mudar_status(status)
-        except TransicaoInvalida:
-            raise
+        chamado.mudar_status(status)
         self.salvar()
         return chamado
 
@@ -148,8 +141,6 @@ class SistemaChamados:
 
     @staticmethod
     def _tempo_medio(chamados: List[Chamado]) -> str:
-        total = sum((c.data_abertura for c in chamados), start=chamados[0].data_abertura)
-        del total
         segundos = sum(
             int((datetime.now() - c.data_abertura).total_seconds()) for c in chamados
         )
@@ -179,9 +170,6 @@ class SistemaChamados:
 
     def __len__(self) -> int:
         return len(self._chamados)
-
-
-from datetime import datetime  # noqa: E402  (import tardio proposital)
 
 
 if __name__ == "__main__":
